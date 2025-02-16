@@ -6,7 +6,9 @@
   
 Format Referensi : 
 https://e-journal.hamzanwadi.ac.id/index.php/edumatic/article/view/27913
+
 https://ejournal.pnc.ac.id/index.php/infotekmesin/article/view/2326
+
 https://d1wqtxts1xzle7.cloudfront.net/81342538/537-libre.pdf?1645710345=&response-content-disposition=inline%3B+filename%3DAnalisis_Faktor_Faktor_Risiko_terhadap_K.pdf&Expires=1739725257&Signature=YweRJsDCwGRus-9IiXfUbn9-UPgfAyRbTNBRSw20cKOUOoiPSqdHLOF1pe-0PDy-2xJ6I7~bEnRETd27EjKJQd6Rh-qxob8kSBFcMeg~QE2R6OmwzH6PYt38Sa4lf8sKqYJ~cBG0OzcyyiIw8k9LJuMOvVdcuZaUwUUv8~PoTg4rMvPvXtzMlGLjgo9ZFT6Lc9l~9PAC1ZZQI11s7UBJ6KRvb7jc7RZmSI-NZ8xZe4lj-aNApZLXhGnviy0GDo4KPbtCWlpBjFHR4wZj3IYc-LmQYuvyOSldAIb7SHmGlOXpB1e1c5upY11HlOBAPIn~ZciR1gkJPLkPkgnUmlamZg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
 
 # Business Understanding
@@ -57,14 +59,22 @@ Missing value adalah data yang hilang atau kosong dalam sebuah dataset. Disini k
 6. Menangani Outlier dengan Fitur IQR Method
   IQR adalah singkatan dari Inter Quartile Range. Kuartil dari suatu populasi adalah tiga nilai yang membagi distribusi data menjadi empat sebaran. Seperempat dari data berada di bawah kuartil pertama (Q1), setengah dari data berada di bawah kuartil kedua (Q2), dan tiga perempat dari data berada di kuartil ketiga (Q3). Dengan demikian interquartile range atau IQR = Q3 - Q1. Untuk mengeceknya, kita akan menggunakan teknik visualisasi, yaitu jenis boxplot. Boxplot menunjukkan ukuran lokasi dan penyebaran, serta memberikan informasi tentang simetri dan outliers. Boxplot bisa digambarkan secara vertikal maupun horizontal.
   Berdasakan visualisasi boxplot tersebut terlihat bahwa pada kolom umur dan tinggi badan tidak ada outlier,karena datasetnya sudah bersih dan tidak memiliki missing value.
+
+  
 ![Screenshot 2025-02-16 233858](https://github.com/user-attachments/assets/71e5e8cf-0476-492c-9093-11065aa9ee75)
+
 ![Screenshot 2025-02-16 233846](https://github.com/user-attachments/assets/dc489580-60e9-4dab-97bb-ca3339fc6c9d)
+
+
 7. Mengecek Ukuran Dataset
 Untuk memeriksa ukuran dari dataset kita menggunakan 'shape()'. Hasil yang didapatkan adalah Dataset memiliki 120,999 baris dan 4 kolom.
 8. Proses analisis data dengan teknik Univariate EDA
 Proses pertama yang dilakukan dalam analisis data dengan teknik univariate adalah membagi data berdasarkan jenis variabelnya yaitu berdasarkan fitur numerik dan kategorikal. Fitur numerik terdiri dari kolom umur dan tinggi badan,sedangkan fitur kategori terdiri dari jenis kelamin dan status gizi.
 a. Pendistribusian untuk mengetahui status gizi berdasarkan jenis kelamin
+
+
 ![Screenshot 2025-02-16 234530](https://github.com/user-attachments/assets/07d61030-4eec-494e-bc63-23522b73d091)
+
 
   Untuk melihat apakah ada pola tertentu antara status gizi dengan jenis kelamin,kita bisa melihatnya dengan visualisasi bar chart. Dimana dalam bart chart ini ada dua sumbu,sumbu x (horizontal) berisi status gizi yang terdiri dari empat (severely stunting, stunting, normal, tinggi). Sedangkan sumbu Y (vertical) menunjukkan jumlah dataset dalam setiap data di status gizi. Jumlah balita ini diperoleh karena sns.countplot() secara otomatis menghitung jumlah data dari dataset dan menampilkannya dalam bentuk grafik. Kemudian disini juga menggunakan 'Hue=' untuk perbandingan warna antara jenis kelamin laki-laki dan perempuan,untuk warna orange menandakan perempuan dan biru laki-laki.
 Hasil visualisasi ini adalah diperoleh
@@ -74,18 +84,27 @@ Hasil visualisasi ini adalah diperoleh
 - Status gizi ' stunting' berada diposisi terakhir dengan jumlah antara perempuan dan laki-laki hampir setara. Kondisi ini menunjukkan kondisi stunting (-3 SD sd <-2 SD) dan harus menjadi perhatian khusus tenaga kesehatan dan penelitian juga.
   Kesimpulannya adalah sebagian besar balita memiliki pertumbuhan yang baik karena berdasarkan grafik yang paling dominan adalah kondisi 'normal' walapun sebagian kondisi balita memprihatinkan karena ada pada kondisi 'several stunting'. Dan untuk distribusi laki-laki dan perempuan hampir mirip di setiap kategori, berarti tidak ada perbedaan signifikan antara jenis kelamin dalam status gizi.
 b. Pendistribusian fitur kategorikal yang kedua di kolom status gizi
+
+
 ![Screenshot 2025-02-16 234544](https://github.com/user-attachments/assets/e894cd2a-0452-4921-b109-3db35116a4aa)
+
 
   Berdasarkan deskripsi variabel, urutan kategori status gizi ini dari yang paling tinggi ke yang paling rendah adalah normal,severely stunted ,tinggi,dan stunting. Dari grafik ini,dapat disimpulkan bahwa kondisi gizi anak-anak bayi dan balita masih dominan normal yang berarti memiliki pertumbuhan yang baik. Tetapi perlu diperhatikan juga bahwa di urutan kedua kondisinya severely stunted yang berarti kondisi ini sangat buruk dan harus segera diberikan perhatian khusus untuk ditangani. Karena tidak dapat kita pungkiri kondisi ini cukup tinggi dibeberapa negara atau kota yang kekurangan perhatian sehingga kondisi bayi dan balitanya sudah ditahap bahaya melibihi stunting. Kemudian untuk status gizi 'tinggi' ada diurutan ketiga yang mungkin hanya terjadi dibeberapa atau sedikit anak yang pertumbuhannya lebih cepat dibandingkan usianya. Dan terakhir kondisi stunting,walaupun diurutan terakhir tetap harus diperhatikan agar kondisi gizi anak masih bisa diperbaiki menjadi normal.
 c. Numerical Features
 Berdasarkan grafik fitur numerik kolom 'umur' adalah:
+
+
 ![Screenshot 2025-02-16 234554](https://github.com/user-attachments/assets/47364818-d4eb-46c5-8a0f-473f7f53572f)
+
 
 - Ada peningkatan atau puncak diusia 60 bulan,artinya banyak bayi yang berada direntang usia 60 bulan.
 - Hampir keseluruhan grafik merata dari umur 0 bulan atau yang baru lahir sampai umur 59 bulan,artinya usia balita tersebar secara merata.
 - Namun ada penurunan juga di umur 10 bulan,dengan penurunan yang cukup banyak tetapi kemudian naik lagi.
+  
 Distribusi fitur numerik kolom 'Tinggi Badan'
+
 ![Screenshot 2025-02-16 234603](https://github.com/user-attachments/assets/b4706376-0fd7-4b10-9c86-0a86aa692dd9)
+
 
 - Mayoritas balita memiliki tinggi 90-100 cm.
 - Distribusi tinggi badan simetris—tidak ada skewness yang signifikan.
@@ -95,19 +114,28 @@ Distribusi fitur numerik kolom 'Tinggi Badan'
 
 Pada tahapan data preparation,proyek ini menerapkan tiga teknik yaitu sebagai berikut:
 1. Encoding Fitur Kategori Untuk fitur encoding,salah satu teknik umum yang digunakan adalah label encoding. Karena Prediksi status gizi adalah tujuan yang ingin dicapai. Seperti yang kita ketahui,status gizi adalah variabel kategori karena status gizi punya tingkatan/urutan tetapi tidak berupa nilai. Jadi teknik label encoding sangat cocok untuk prediksi yang bersifat kategori. Library scikit-learn menyediakan fungsi ini untuk mendapatkan fitur baru yang sesuai sehingga dapat mewakili variabel kategori. Kita memiliki tiga variabel kategori dalam dataset kita, yaitu 'Jenis Kelamin, dan 'Status Gizi'. Dan sekarang output untuk kolom jenis kelamin menjadi 0 (untuk gender laki-lai) dan 1 (untuk gender perempuan). Sama Halnya dengan kolom jenis kelamin,kolom status gizi pun sudah berubah menjadi variabel numerik juga.
+
+   
 Kode: ![Screenshot 2025-02-16 235248](https://github.com/user-attachments/assets/b2879a79-4e8b-4b0f-b2b7-c2f5b79021dc)
 
 Output: ![Screenshot 2025-02-16 235306](https://github.com/user-attachments/assets/2d476292-ea51-4669-b93d-9b635df4070e)
 
+
 2. Pembagian dataset dengan fungsi train_test_split dari library sklearn. Membagi dataset menjadi data latih (train) dan data uji (test) merupakan hal yang harus kita lakukan sebelum membuat model. Tujuannya adalah agar kita tidak mengotori data uji dengan informasi yang kita dapat dari data latih. proporsi pembagian data latih dan uji adalah 80:20. Dan kita dapat memperoleh hasil dari proses train_test_split ini seperti kode dibawah.
+
+   
 Kode:![Screenshot 2025-02-16 235515](https://github.com/user-attachments/assets/e63a2e97-2f3c-4974-997f-ffc35d9b7c66)
 
 Output: ![Screenshot 2025-02-16 235648](https://github.com/user-attachments/assets/cabe63a4-89bf-405f-bc35-b5cd618198ae)
 
+
 3. Standarisasi Standardisasi adalah teknik transformasi yang paling umum digunakan dalam tahap persiapan pemodelan. Untuk fitur numerik, kita tidak akan melakukan transformasi dengan one-hot-encoding seperti pada fitur kategori. Kita akan menggunakan teknik StandarScaler dari library Scikitlearn, StandardScaler melakukan proses standarisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi. StandardScaler menghasilkan distribusi dengan standar deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1. Fitur standarisasi diterapkan pada data train dan data test dari kolom numerik 'umur' dan 'tinggi badan'. Dan sekarang outputnya telah menjadi nilai mean = 0 dan standar deviasi = 1.
+
+   
 kode: ![Screenshot 2025-02-16 235613](https://github.com/user-attachments/assets/e34633f8-777a-41ba-b662-825d784382d8)
 
 Output: ![Screenshot 2025-02-16 235632](https://github.com/user-attachments/assets/862e9ec1-c3d1-40f8-8197-501175ab41de)
+
 
 # Modeling
 
