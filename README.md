@@ -2,9 +2,11 @@
 
 # Domain Proyek
   Stunting masih menjadi masalah kesehatan serius yang berdampak pada pertumbuhan fisik, perkembangan kognitif, serta daya tahan tubuh anak. Kondisi ini terjadi akibat kekurangan gizi dalam jangka panjang, terutama selama 1.000 hari pertama kehidupan. Faktor lain seperti keterbatasan akses pangan bergizi dan rendahnya pengetahuan ibu tentang nutrisi juga memperparah situasi (Masacgi & Rohman, 2023; Damayanti & Jakfar, 2023). Menurut WHO, stunting didefinisikan sebagai panjang atau tinggi badan yang lebih dari dua standar deviasi di bawah rata-rata usianya. Data tahun 2016 mencatat bahwa sekitar 22,9% balita di dunia mengalami stunting, dengan sekitar 3 juta kematian setiap tahun akibat kekurangan gizi (Muche et al., 2021). Di Indonesia, angka stunting sempat mencapai 38,9% pada tahun 2020. Meski turun menjadi 21,6% pada 2022, target nasional 14% di tahun 2024 masih cukup menantang (Kemenkes RI, 2022; Wahyuni & Kusumodestoni, 2024). Jika dibandingkan dengan negara tetangga seperti Malaysia (17%) dan Thailand (16%), Indonesia masih memiliki angka yang lebih tinggi, sehingga membutuhkan langkah konkret yang lebih efektif (Titimeidara & Hadikurniawati, 2021).
+  
   Salah satu tantangan utama dalam menekan angka stunting adalah sulitnya mendeteksi risiko sejak dini. Stunting tidak hanya dipengaruhi oleh satu faktor, melainkan kombinasi dari usia, jenis kelamin, tinggi badan, kondisi ekonomi keluarga, serta pola asuh. Jika hanya mengandalkan pengamatan, tenaga kesehatan bisa kesulitan menentukan apakah seorang anak berisiko mengalami stunting. Oleh karena itu, penerapan teknologi seperti machine learning dapat menjadi solusi untuk memprediksi stunting dengan lebih akurat. Dengan memanfaatkan dataset Stunting Toddler (Balita) Detection yang berisi data dari 121.000 balita, model prediksi berbasis Random Forest dapat dikembangkan untuk mengidentifikasi anak yang berisiko mengalami stunting. Evaluasi model menggunakan metrik seperti akurasi, recall, heatmap, dan F1-score dapat membantu memastikan bahwa prediksi yang dihasilkan cukup akurat. Jika sistem ini diterapkan dengan baik, tenaga kesehatan dan pembuat kebijakan bisa lebih mudah menentukan strategi intervensi gizi yang tepat, sehingga anak-anak mendapatkan perhatian yang sesuai untuk mencegah stunting sejak dini.
   
 Format Referensi : 
+
 https://e-journal.hamzanwadi.ac.id/index.php/edumatic/article/view/27913
 
 https://ejournal.pnc.ac.id/index.php/infotekmesin/article/view/2326
@@ -58,83 +60,133 @@ Fungsi describe() memberikan informasi statistik pada masing-masing kolom, antar
 Missing value adalah data yang hilang atau kosong dalam sebuah dataset. Disini kita menggunakan kode 'isnull().sum()' untuk memeriksa missing value yang terdapat di dataset. Dan hasilnya menunjukkan bahwa dalam dataset "Stunting Toddler (Balita) Detection" tidak memiliki missing value atau bisa diartikan bahwa dataset ini sudah bersih dan bisa langsung digunakan untuk proses pemodelan.
 6. Menangani Outlier dengan Fitur IQR Method
   IQR adalah singkatan dari Inter Quartile Range. Kuartil dari suatu populasi adalah tiga nilai yang membagi distribusi data menjadi empat sebaran. Seperempat dari data berada di bawah kuartil pertama (Q1), setengah dari data berada di bawah kuartil kedua (Q2), dan tiga perempat dari data berada di kuartil ketiga (Q3). Dengan demikian interquartile range atau IQR = Q3 - Q1. Untuk mengeceknya, kita akan menggunakan teknik visualisasi, yaitu jenis boxplot. Boxplot menunjukkan ukuran lokasi dan penyebaran, serta memberikan informasi tentang simetri dan outliers. Boxplot bisa digambarkan secara vertikal maupun horizontal.
-  Berdasakan visualisasi boxplot tersebut terlihat bahwa pada kolom umur dan tinggi badan tidak ada outlier,karena datasetnya sudah bersih dan tidak memiliki missing value.
+  
+Berdasakan visualisasi boxplot tersebut terlihat bahwa pada kolom umur dan tinggi badan tidak ada outlier,karena datasetnya sudah bersih dan tidak memiliki missing value.
+
 
   
 ![Screenshot 2025-02-16 233858](https://github.com/user-attachments/assets/71e5e8cf-0476-492c-9093-11065aa9ee75)
 
+
 ![Screenshot 2025-02-16 233846](https://github.com/user-attachments/assets/dc489580-60e9-4dab-97bb-ca3339fc6c9d)
+
 
 
 7. Mengecek Ukuran Dataset
 Untuk memeriksa ukuran dari dataset kita menggunakan 'shape()'. Hasil yang didapatkan adalah Dataset memiliki 120,999 baris dan 4 kolom.
 8. Proses analisis data dengan teknik Univariate EDA
 Proses pertama yang dilakukan dalam analisis data dengan teknik univariate adalah membagi data berdasarkan jenis variabelnya yaitu berdasarkan fitur numerik dan kategorikal. Fitur numerik terdiri dari kolom umur dan tinggi badan,sedangkan fitur kategori terdiri dari jenis kelamin dan status gizi.
+
 a. Pendistribusian untuk mengetahui status gizi berdasarkan jenis kelamin
+
+  Untuk melihat apakah ada pola tertentu antara status gizi dengan jenis kelamin,kita bisa melihatnya dengan visualisasi bar chart. Dimana dalam bart chart ini ada dua sumbu,sumbu x (horizontal) berisi status gizi yang terdiri dari empat (severely stunting, stunting, normal, tinggi). Sedangkan sumbu Y (vertical) menunjukkan jumlah dataset dalam setiap data di status gizi. Jumlah balita ini diperoleh karena sns.countplot() secara otomatis menghitung jumlah data dari dataset dan menampilkannya dalam bentuk grafik. Kemudian disini juga menggunakan 'Hue=' untuk perbandingan warna antara jenis kelamin laki-laki dan perempuan,untuk warna orange menandakan perempuan dan biru laki-laki.
+
 
 
 ![Screenshot 2025-02-16 234530](https://github.com/user-attachments/assets/07d61030-4eec-494e-bc63-23522b73d091)
 
 
-  Untuk melihat apakah ada pola tertentu antara status gizi dengan jenis kelamin,kita bisa melihatnya dengan visualisasi bar chart. Dimana dalam bart chart ini ada dua sumbu,sumbu x (horizontal) berisi status gizi yang terdiri dari empat (severely stunting, stunting, normal, tinggi). Sedangkan sumbu Y (vertical) menunjukkan jumlah dataset dalam setiap data di status gizi. Jumlah balita ini diperoleh karena sns.countplot() secara otomatis menghitung jumlah data dari dataset dan menampilkannya dalam bentuk grafik. Kemudian disini juga menggunakan 'Hue=' untuk perbandingan warna antara jenis kelamin laki-laki dan perempuan,untuk warna orange menandakan perempuan dan biru laki-laki.
+
+
 Hasil visualisasi ini adalah diperoleh
+
 - Status gizi yang paling besar adalah normal pada perempuan dibandingkan laki-laki,yang artinya mengindikasikan status gizi yang sehat (-2 SD sd +3 SD).
 - Status gizi 'Severely stunting' lebih banyak dibandingkan 'stunting' dengan urutan kedua. Dan jenis kelamin dengan status gizi ini yang unggul sedikit adalah laki-laki dibanding perempuan. Hal ini harus menjadi perhatian para tenaga kesehatan karena 'Severely stunting' menunjukkan kondisi sangat serius (<-3 SD) dan perlu perhatian khusus.
 - Status gizi 'Tinggi' perempuan lebih unggul sedikit dibandingkan laki-laki. Dan 'tinggi' (height) menunjukkan pertumbuhan di atas rata-rata (>+3 SD).
 - Status gizi ' stunting' berada diposisi terakhir dengan jumlah antara perempuan dan laki-laki hampir setara. Kondisi ini menunjukkan kondisi stunting (-3 SD sd <-2 SD) dan harus menjadi perhatian khusus tenaga kesehatan dan penelitian juga.
+- 
   Kesimpulannya adalah sebagian besar balita memiliki pertumbuhan yang baik karena berdasarkan grafik yang paling dominan adalah kondisi 'normal' walapun sebagian kondisi balita memprihatinkan karena ada pada kondisi 'several stunting'. Dan untuk distribusi laki-laki dan perempuan hampir mirip di setiap kategori, berarti tidak ada perbedaan signifikan antara jenis kelamin dalam status gizi.
+  
 b. Pendistribusian fitur kategorikal yang kedua di kolom status gizi
+
 
 
 ![Screenshot 2025-02-16 234544](https://github.com/user-attachments/assets/e894cd2a-0452-4921-b109-3db35116a4aa)
 
 
+
   Berdasarkan deskripsi variabel, urutan kategori status gizi ini dari yang paling tinggi ke yang paling rendah adalah normal,severely stunted ,tinggi,dan stunting. Dari grafik ini,dapat disimpulkan bahwa kondisi gizi anak-anak bayi dan balita masih dominan normal yang berarti memiliki pertumbuhan yang baik. Tetapi perlu diperhatikan juga bahwa di urutan kedua kondisinya severely stunted yang berarti kondisi ini sangat buruk dan harus segera diberikan perhatian khusus untuk ditangani. Karena tidak dapat kita pungkiri kondisi ini cukup tinggi dibeberapa negara atau kota yang kekurangan perhatian sehingga kondisi bayi dan balitanya sudah ditahap bahaya melibihi stunting. Kemudian untuk status gizi 'tinggi' ada diurutan ketiga yang mungkin hanya terjadi dibeberapa atau sedikit anak yang pertumbuhannya lebih cepat dibandingkan usianya. Dan terakhir kondisi stunting,walaupun diurutan terakhir tetap harus diperhatikan agar kondisi gizi anak masih bisa diperbaiki menjadi normal.
+  
 c. Numerical Features
+
 Berdasarkan grafik fitur numerik kolom 'umur' adalah:
+
+- Ada peningkatan atau puncak diusia 60 bulan,artinya banyak bayi yang berada direntang usia 60 bulan.
+- Hampir keseluruhan grafik merata dari umur 0 bulan atau yang baru lahir sampai umur 59 bulan,artinya usia balita tersebar secara merata.
+- Namun ada penurunan juga di umur 10 bulan,dengan penurunan yang cukup banyak tetapi kemudian naik lagi.
+
 
 
 ![Screenshot 2025-02-16 234554](https://github.com/user-attachments/assets/47364818-d4eb-46c5-8a0f-473f7f53572f)
 
 
-- Ada peningkatan atau puncak diusia 60 bulan,artinya banyak bayi yang berada direntang usia 60 bulan.
-- Hampir keseluruhan grafik merata dari umur 0 bulan atau yang baru lahir sampai umur 59 bulan,artinya usia balita tersebar secara merata.
-- Namun ada penurunan juga di umur 10 bulan,dengan penurunan yang cukup banyak tetapi kemudian naik lagi.
+
   
 Distribusi fitur numerik kolom 'Tinggi Badan'
-
-![Screenshot 2025-02-16 234603](https://github.com/user-attachments/assets/b4706376-0fd7-4b10-9c86-0a86aa692dd9)
-
 
 - Mayoritas balita memiliki tinggi 90-100 cm.
 - Distribusi tinggi badan simetris—tidak ada skewness yang signifikan.
 - Ada sedikit balita dengan tinggi di bawah 50 cm atau di atas 120 cm.
+
+
+
+![Screenshot 2025-02-16 234603](https://github.com/user-attachments/assets/b4706376-0fd7-4b10-9c86-0a86aa692dd9)
+
+
+
   
 # Data Preparation
 
 Pada tahapan data preparation,proyek ini menerapkan tiga teknik yaitu sebagai berikut:
+
 1. Encoding Fitur Kategori Untuk fitur encoding,salah satu teknik umum yang digunakan adalah label encoding. Karena Prediksi status gizi adalah tujuan yang ingin dicapai. Seperti yang kita ketahui,status gizi adalah variabel kategori karena status gizi punya tingkatan/urutan tetapi tidak berupa nilai. Jadi teknik label encoding sangat cocok untuk prediksi yang bersifat kategori. Library scikit-learn menyediakan fungsi ini untuk mendapatkan fitur baru yang sesuai sehingga dapat mewakili variabel kategori. Kita memiliki tiga variabel kategori dalam dataset kita, yaitu 'Jenis Kelamin, dan 'Status Gizi'. Dan sekarang output untuk kolom jenis kelamin menjadi 0 (untuk gender laki-lai) dan 1 (untuk gender perempuan). Sama Halnya dengan kolom jenis kelamin,kolom status gizi pun sudah berubah menjadi variabel numerik juga.
 
    
-Kode: ![Screenshot 2025-02-16 235248](https://github.com/user-attachments/assets/b2879a79-4e8b-4b0f-b2b7-c2f5b79021dc)
+Kode: 
 
-Output: ![Screenshot 2025-02-16 235306](https://github.com/user-attachments/assets/2d476292-ea51-4669-b93d-9b635df4070e)
+
+![Screenshot 2025-02-16 235248](https://github.com/user-attachments/assets/b2879a79-4e8b-4b0f-b2b7-c2f5b79021dc)
+
+
+
+Output: 
+
+
+![Screenshot 2025-02-16 235306](https://github.com/user-attachments/assets/2d476292-ea51-4669-b93d-9b635df4070e)
+
+
 
 
 2. Pembagian dataset dengan fungsi train_test_split dari library sklearn. Membagi dataset menjadi data latih (train) dan data uji (test) merupakan hal yang harus kita lakukan sebelum membuat model. Tujuannya adalah agar kita tidak mengotori data uji dengan informasi yang kita dapat dari data latih. proporsi pembagian data latih dan uji adalah 80:20. Dan kita dapat memperoleh hasil dari proses train_test_split ini seperti kode dibawah.
 
    
-Kode:![Screenshot 2025-02-16 235515](https://github.com/user-attachments/assets/e63a2e97-2f3c-4974-997f-ffc35d9b7c66)
+Kode:
 
-Output: ![Screenshot 2025-02-16 235648](https://github.com/user-attachments/assets/cabe63a4-89bf-405f-bc35-b5cd618198ae)
+
+![Screenshot 2025-02-16 235515](https://github.com/user-attachments/assets/e63a2e97-2f3c-4974-997f-ffc35d9b7c66)
+
+
+
+Output: 
+
+
+![Screenshot 2025-02-16 235648](https://github.com/user-attachments/assets/cabe63a4-89bf-405f-bc35-b5cd618198ae)
+
 
 
 3. Standarisasi Standardisasi adalah teknik transformasi yang paling umum digunakan dalam tahap persiapan pemodelan. Untuk fitur numerik, kita tidak akan melakukan transformasi dengan one-hot-encoding seperti pada fitur kategori. Kita akan menggunakan teknik StandarScaler dari library Scikitlearn, StandardScaler melakukan proses standarisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi. StandardScaler menghasilkan distribusi dengan standar deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1. Fitur standarisasi diterapkan pada data train dan data test dari kolom numerik 'umur' dan 'tinggi badan'. Dan sekarang outputnya telah menjadi nilai mean = 0 dan standar deviasi = 1.
 
    
-kode: ![Screenshot 2025-02-16 235613](https://github.com/user-attachments/assets/e34633f8-777a-41ba-b662-825d784382d8)
+kode: 
 
-Output: ![Screenshot 2025-02-16 235632](https://github.com/user-attachments/assets/862e9ec1-c3d1-40f8-8197-501175ab41de)
+
+![Screenshot 2025-02-16 235613](https://github.com/user-attachments/assets/e34633f8-777a-41ba-b662-825d784382d8)
+
+Output:
+
+
+![Screenshot 2025-02-16 235632](https://github.com/user-attachments/assets/862e9ec1-c3d1-40f8-8197-501175ab41de)
+
 
 
 # Modeling
