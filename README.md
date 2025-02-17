@@ -47,6 +47,7 @@ Langkah pertama dalam penelitian ini adalah mengimpor seluruh library yang diper
 - Jumlah kolom beserta nama dan tipe datanya
 - Jumlah entri dalam dataset
 - Memori yang digunakan
+  
   Berdasarkan hasil analisis, diketahui bahwa kolom jenis kelamin dan status gizi memiliki tipe data object, sedangkan kolom umur memiliki tipe data integer, dan tinggi badan memiliki tipe data float. Secara keseluruhan, dataset ini menggunakan memori sekitar 3,7 MB dengan RangeIndex: 120.999 entries (0 hingga 120.998).
   
 4. Melihat Statistik Deskriptif Data
@@ -59,6 +60,7 @@ Analisis statistik deskriptif dilakukan menggunakan fungsi describe(), yang memb
 - 50%: kuartil kedua atau median
 - 75%: kuartil ketiga (Q3)
 - Max: nilai maksimum
+  
   Karena hanya kolom umur dan tinggi badan yang bertipe numerik, maka analisis statistik ini diterapkan pada kedua kolom tersebut.
   
 5. Mengecek Missing Value
@@ -70,6 +72,7 @@ Outlier dideteksi menggunakan metode Interquartile Range (IQR), di mana:
 - Q2 (Median/Kuartil Kedua): 50% data berada di bawah nilai ini
 - Q3 (Kuartil Ketiga): 75% data berada di bawah nilai ini
 IQR = Q3 - Q1
+
   Untuk memvisualisasikan outlier, digunakan teknik boxplot. Boxplot memberikan gambaran mengenai penyebaran data, simetri, serta kemungkinan adanya outlier. Berdasarkan visualisasi boxplot, dapat disimpulkan bahwa kolom umur dan tinggi badan tidak memiliki outlier. Hal ini menunjukkan bahwa dataset telah bersih dan siap digunakan untuk tahap analisis lebih lanjut.
 
   
