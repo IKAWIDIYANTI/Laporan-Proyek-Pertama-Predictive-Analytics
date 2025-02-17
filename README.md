@@ -47,8 +47,8 @@ Langkah pertama dalam penelitian ini adalah mengimpor seluruh library yang diper
 - Jumlah kolom beserta nama dan tipe datanya
 - Jumlah entri dalam dataset
 - Memori yang digunakan
+  Berdasarkan hasil analisis, diketahui bahwa kolom jenis kelamin dan status gizi memiliki tipe data object, sedangkan kolom umur memiliki tipe data integer, dan tinggi badan memiliki tipe data float. Secara keseluruhan, dataset ini menggunakan memori sekitar 3,7 MB dengan RangeIndex: 120.999 entries (0 hingga 120.998).
   
-Berdasarkan hasil analisis, diketahui bahwa kolom jenis kelamin dan status gizi memiliki tipe data object, sedangkan kolom umur memiliki tipe data integer, dan tinggi badan memiliki tipe data float. Secara keseluruhan, dataset ini menggunakan memori sekitar 3,7 MB dengan RangeIndex: 120.999 entries (0 hingga 120.998).
 4. Melihat Statistik Deskriptif Data
 Analisis statistik deskriptif dilakukan menggunakan fungsi describe(), yang memberikan informasi statistik untuk setiap kolom numerik dalam dataset, termasuk:
 - Count: jumlah sampel dalam dataset
@@ -59,18 +59,18 @@ Analisis statistik deskriptif dilakukan menggunakan fungsi describe(), yang memb
 - 50%: kuartil kedua atau median
 - 75%: kuartil ketiga (Q3)
 - Max: nilai maksimum
+  Karena hanya kolom umur dan tinggi badan yang bertipe numerik, maka analisis statistik ini diterapkan pada kedua kolom tersebut.
   
-Karena hanya kolom umur dan tinggi badan yang bertipe numerik, maka analisis statistik ini diterapkan pada kedua kolom tersebut.
 5. Mengecek Missing Value
-Missing value merupakan data yang hilang atau kosong dalam sebuah dataset. Untuk memeriksa adanya missing value, digunakan fungsi isnull().sum(). Hasil analisis menunjukkan bahwa dataset tidak memiliki missing value, sehingga dapat langsung digunakan dalam proses pemodelan tanpa perlu dilakukan pembersihan data lebih lanjut.
+  Missing value merupakan data yang hilang atau kosong dalam sebuah dataset. Untuk memeriksa adanya missing value, digunakan fungsi isnull().sum(). Hasil analisis menunjukkan bahwa dataset tidak memiliki missing value, sehingga dapat langsung digunakan dalam proses pemodelan tanpa perlu dilakukan pembersihan data lebih lanjut.
+
 6. Mengecek Outlier dengan Metode IQR
 Outlier dideteksi menggunakan metode Interquartile Range (IQR), di mana:
 - Q1 (Kuartil Pertama): 25% data berada di bawah nilai ini
 - Q2 (Median/Kuartil Kedua): 50% data berada di bawah nilai ini
 - Q3 (Kuartil Ketiga): 75% data berada di bawah nilai ini
 IQR = Q3 - Q1
-
-Untuk memvisualisasikan outlier, digunakan teknik boxplot. Boxplot memberikan gambaran mengenai penyebaran data, simetri, serta kemungkinan adanya outlier. Berdasarkan visualisasi boxplot, dapat disimpulkan bahwa kolom umur dan tinggi badan tidak memiliki outlier. Hal ini menunjukkan bahwa dataset telah bersih dan siap digunakan untuk tahap analisis lebih lanjut.
+  Untuk memvisualisasikan outlier, digunakan teknik boxplot. Boxplot memberikan gambaran mengenai penyebaran data, simetri, serta kemungkinan adanya outlier. Berdasarkan visualisasi boxplot, dapat disimpulkan bahwa kolom umur dan tinggi badan tidak memiliki outlier. Hal ini menunjukkan bahwa dataset telah bersih dan siap digunakan untuk tahap analisis lebih lanjut.
 
   
 ![Screenshot 2025-02-16 233858](https://github.com/user-attachments/assets/71e5e8cf-0476-492c-9093-11065aa9ee75)
@@ -81,15 +81,16 @@ Untuk memvisualisasikan outlier, digunakan teknik boxplot. Boxplot memberikan ga
 
 
 7. Mengecek Ukuran Dataset
-Untuk memeriksa ukuran dataset, digunakan fungsi .shape(). Hasil yang diperoleh menunjukkan bahwa dataset terdiri dari 120.999 baris dan 4 kolom.
+  Untuk memeriksa ukuran dataset, digunakan fungsi .shape(). Hasil yang diperoleh menunjukkan bahwa dataset terdiri dari 120.999 baris dan 4 kolom.
+
 8. Analisis Data dengan Teknik Univariate EDA
 Langkah pertama dalam analisis data menggunakan teknik Univariate Exploratory Data Analysis (EDA) adalah mengelompokkan variabel berdasarkan jenisnya, yaitu numerik dan kategorikal. Variabel numerik dalam dataset mencakup umur dan tinggi badan, sedangkan variabel kategorikal terdiri dari jenis kelamin dan status gizi.
 
 a. Distribusi Status Gizi Berdasarkan Jenis Kelamin
 
-Untuk mengidentifikasi pola tertentu antara status gizi dan jenis kelamin, dilakukan visualisasi menggunakan bar chart. Pada grafik ini, sumbu X (horizontal) merepresentasikan kategori status gizi, yang terdiri dari severely stunting, stunting, normal, dan tinggi. Sementara itu, sumbu Y (vertikal) menunjukkan jumlah individu dalam setiap kategori status gizi.
+  Untuk mengidentifikasi pola tertentu antara status gizi dan jenis kelamin, dilakukan visualisasi menggunakan bar chart. Pada grafik ini, sumbu X (horizontal) merepresentasikan kategori status gizi, yang terdiri dari severely stunting, stunting, normal, dan tinggi. Sementara itu, sumbu Y (vertikal) menunjukkan jumlah individu dalam setiap kategori status gizi.
 
-Jumlah individu dalam setiap kategori dihitung secara otomatis menggunakan sns.countplot(), yang kemudian ditampilkan dalam bentuk grafik. Selain itu, parameter hue= digunakan untuk membedakan jenis kelamin, di mana warna biru merepresentasikan laki-laki, sedangkan warna oranye merepresentasikan perempuan.
+  Jumlah individu dalam setiap kategori dihitung secara otomatis menggunakan sns.countplot(), yang kemudian ditampilkan dalam bentuk grafik. Selain itu, parameter hue= digunakan untuk membedakan jenis kelamin, di mana warna biru merepresentasikan laki-laki, sedangkan warna oranye merepresentasikan perempuan.
 
 
 
@@ -104,8 +105,7 @@ Hasil visualisasi ini adalah diperoleh
 - Status gizi "Severely Stunting" lebih banyak dibandingkan dengan "Stunting," dengan jumlah laki-laki sedikit lebih unggul dibandingkan perempuan. Kondisi ini perlu menjadi perhatian khusus tenaga kesehatan karena "Severely Stunting" menunjukkan kondisi yang sangat serius (<-3 SD) dan memerlukan penanganan segera.
 - Status gizi "Tinggi" pada perempuan sedikit lebih unggul dibandingkan laki-laki. Kondisi ini menunjukkan pertumbuhan di atas rata-rata (>+3 SD).
 - Status gizi "Stunting" menempati posisi terakhir dengan jumlah yang hampir setara antara perempuan dan laki-laki. Kondisi ini mengindikasikan stunting (-3 SD hingga <-2 SD) yang memerlukan perhatian lebih dari tenaga kesehatan dan menjadi fokus dalam penelitian lebih lanjut.
-  
-Kesimpulannya, sebagian besar balita menunjukkan pertumbuhan yang baik karena status gizi "Normal" mendominasi, meskipun terdapat sebagian kondisi balita yang memprihatinkan dalam kategori "Severely Stunting." Distribusi antara laki-laki dan perempuan hampir seimbang di setiap kategori, yang menunjukkan tidak ada perbedaan signifikan dalam status gizi berdasarkan jenis kelamin.
+  Kesimpulannya, sebagian besar balita menunjukkan pertumbuhan yang baik karena status gizi "Normal" mendominasi, meskipun terdapat sebagian kondisi balita yang memprihatinkan dalam kategori "Severely Stunting." Distribusi antara laki-laki dan perempuan hampir seimbang di setiap kategori, yang menunjukkan tidak ada perbedaan signifikan dalam status gizi berdasarkan jenis kelamin.
   
 b. Pendistribusian fitur kategorikal yang kedua di kolom status gizi
 
@@ -115,7 +115,7 @@ b. Pendistribusian fitur kategorikal yang kedua di kolom status gizi
 
 
 
-Berdasarkan deskripsi variabel, urutan kategori status gizi dari yang tertinggi hingga terendah adalah normal, severely stunted, tinggi, dan stunting. Dari grafik ini, dapat disimpulkan bahwa kondisi gizi anak-anak bayi dan balita sebagian besar berada dalam kategori normal, yang menunjukkan pertumbuhan yang baik. Namun, perlu menjadi perhatian bahwa posisi kedua diisi oleh kategori severely stunted, yang menunjukkan kondisi gizi yang sangat buruk dan memerlukan perhatian khusus untuk penanganannya. Kondisi ini cukup tinggi di beberapa negara atau kota yang kurang mendapatkan perhatian, sehingga bayi dan balita mengalami penurunan gizi yang lebih parah, bahkan lebih buruk dibandingkan stunting. Selanjutnya, status gizi 'tinggi' berada di urutan ketiga, yang kemungkinan hanya terjadi pada sejumlah kecil anak yang mengalami pertumbuhan lebih cepat dari usianya. Terakhir, meskipun kategori stunting berada di urutan terakhir, tetap perlu mendapatkan perhatian agar kondisi gizi anak dapat diperbaiki dan kembali ke status normal.
+  Berdasarkan deskripsi variabel, urutan kategori status gizi dari yang tertinggi hingga terendah adalah normal, severely stunted, tinggi, dan stunting. Dari grafik ini, dapat disimpulkan bahwa kondisi gizi anak-anak bayi dan balita sebagian besar berada dalam kategori normal, yang menunjukkan pertumbuhan yang baik. Namun, perlu menjadi perhatian bahwa posisi kedua diisi oleh kategori severely stunted, yang menunjukkan kondisi gizi yang sangat buruk dan memerlukan perhatian khusus untuk penanganannya. Kondisi ini cukup tinggi di beberapa negara atau kota yang kurang mendapatkan perhatian, sehingga bayi dan balita mengalami penurunan gizi yang lebih parah, bahkan lebih buruk dibandingkan stunting. Selanjutnya, status gizi 'tinggi' berada di urutan ketiga, yang kemungkinan hanya terjadi pada sejumlah kecil anak yang mengalami pertumbuhan lebih cepat dari usianya. Terakhir, meskipun kategori stunting berada di urutan terakhir, tetap perlu mendapatkan perhatian agar kondisi gizi anak dapat diperbaiki dan kembali ke status normal.
   
 c. Numerical Features
 
